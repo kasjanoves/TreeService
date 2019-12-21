@@ -2,23 +2,23 @@ package treeservice.service;
 
 import org.springframework.stereotype.Component;
 
+import treeservice.domain.CalcRequestResult;
 import treeservice.domain.TreeNode;
 
 @Component
 public class CalcServiceImpl implements CalcService {
 
     @Override
-    public Long calcSum(TreeNode root) {
+    public void calcSum(CalcRequestResult result) {
 
-	Long result = 0L;
-	calcRecursively(root, result);
-	return result;
+	calcRecursively(result.getRoot(), result);
+
     }
 
-    private void calcRecursively(TreeNode root, Long resultAccum) {
-	resultAccum += root.getWeight();
+    private void calcRecursively(TreeNode root, CalcRequestResult result) {
+	result.setResult(result.getResult() + root.getWeight());
 	for (TreeNode sub : root.getSubNodes())
-	    calcRecursively(sub, resultAccum);
+	    calcRecursively(sub, result);
     }
 
 }

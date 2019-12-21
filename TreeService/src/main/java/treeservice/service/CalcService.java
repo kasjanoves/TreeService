@@ -1,8 +1,8 @@
 package treeservice.service;
 
-import treeservice.domain.TreeNode;
+import treeservice.domain.CalcRequestResult;
 
 public interface CalcService {
     
-    Long calcSum(TreeNode root);
+    void calcSum(CalcRequestResult result);
 }

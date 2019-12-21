@@ -27,9 +27,9 @@ public class ServiceController {
 
     @RequestMapping(value = "/calc", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<Long> calc(@RequestBody TreeNode root) {
-	Long sum = calcService.calcSum(root);
-	CalcRequestResult result = new CalcRequestResult(root, LocalDateTime.now(), sum);
+	CalcRequestResult result = new CalcRequestResult(root, LocalDateTime.now(), 0L);
+	calcService.calcSum(result);
 	calcRequestRepository.save(result);
-	return new ResponseEntity<Long>(sum, HttpStatus.OK);
+	return new ResponseEntity<Long>(result.getResult(), HttpStatus.OK);
     }
 }

@@ -18,7 +18,7 @@ public class CalcRequestResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = { CascadeType.PERSIST })
     @JoinColumn(name = "root_id")
     private TreeNode root;
     private LocalDateTime requestTime;

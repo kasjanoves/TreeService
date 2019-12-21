@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +25,10 @@ public class CalcRequestRepositoryImpl implements CalcRequestRepository {
 
     @Override
     public List<CalcRequestResult> getAll() {
-	return null;
+	CriteriaQuery<CalcRequestResult> criteria = entityManager.getCriteriaBuilder()
+		.createQuery(CalcRequestResult.class);
+	criteria.from(CalcRequestResult.class);
+	return entityManager.createQuery(criteria).getResultList();
     }
 
 }
